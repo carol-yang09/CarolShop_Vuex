@@ -146,19 +146,21 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isLoading', 'messages', 'carts', 'cartsLength', 'isCartShow']),
+    ...mapGetters(['isLoading']),
+    ...mapGetters('alertMessageModules', ['messages']),
+    ...mapGetters('cartModules', ['carts', 'cartsLength', 'isCartShow']),
   },
   methods: {
     removeCartItem(id) {
-      this.$store.dispatch('removeCartItem', id);
+      this.$store.dispatch('cartModules/removeCartItem', id);
     },
-    ...mapActions(['getCart', 'showCart']),
+    ...mapActions('cartModules', ['getCart', 'showCart']),
   },
   components: {
     Alert,
   },
   created() {
-    this.$store.dispatch('getCart');
+    this.$store.dispatch('cartModules/getCart');
   },
 };
 </script>

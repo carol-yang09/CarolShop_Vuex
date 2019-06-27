@@ -173,12 +173,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['products', 'pagination']),
+    ...mapGetters(['pagination']),
+    ...mapGetters('productsModules', ['products']),
   },
   methods: {
     getProducts(page = 1) {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products?page=${page}`;
-      this.$store.dispatch('getProducts', { url: api, isPagination: true });
+      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: true });
     },
     openModal(isNew, item) {
       if (isNew) {
@@ -202,9 +203,9 @@ export default {
         if (response.data.success) {
           $('#productModal').modal('hide');
           vm.getProducts();
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -219,9 +220,9 @@ export default {
         if (response.data.success) {
           $('#delProductModal').modal('hide');
           vm.getProducts();
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -241,7 +242,7 @@ export default {
         if (response.data.success) {
           vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },

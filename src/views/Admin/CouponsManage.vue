@@ -156,7 +156,7 @@ export default {
           vm.coupons = response.data.coupons;
           vm.pagination = response.data.pagination;
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
         vm.$store.dispatch('updateLoading', false);
       });
@@ -182,9 +182,9 @@ export default {
           if (response.data.success) {
             $('#couponModal').modal('hide');
             this.getCoupons();
-            vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+            vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
           } else {
-            vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+            vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
           }
         });
       } else {
@@ -194,9 +194,9 @@ export default {
           if (response.data.success) {
             $('#couponModal').modal('hide');
             this.getCoupons();
-            vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+            vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
           } else {
-            vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+            vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
           }
         });
       }
@@ -212,9 +212,9 @@ export default {
         if (response.data.success) {
           $('#delCouponModal').modal('hide');
           this.getCoupons();
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },

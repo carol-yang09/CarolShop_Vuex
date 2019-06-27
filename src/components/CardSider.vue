@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 // eslint-disable-next-line
 import 'swiper/dist/css/swiper.css';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
@@ -43,14 +44,12 @@ export default {
     };
   },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
+    ...mapGetters('productsModules', ['products']),
   },
   methods: {
     getProducts() {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('getProducts', { url: api, isPagination: false });
+      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: false });
     },
     productBtn(productId) {
       const vm = this;

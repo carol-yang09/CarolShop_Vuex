@@ -61,7 +61,7 @@ export default {
           vm.orders = response.data.orders;
           vm.pagination = response.data.pagination;
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
         vm.$store.dispatch('updateLoading', false);
       });

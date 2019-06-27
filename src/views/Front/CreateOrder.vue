@@ -163,7 +163,7 @@
         <form @submit.prevent="createOrder">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" class="form-control"
+            <input type="email" name="email" id="email" class="form-control"
              :class="{'is-invalid': errors.first('email')}" v-validate="'required|email'"
              placeholder="請輸入 Email" v-model="form.user.email">
             <span class="text-danger" v-if="errors.first('email')">
@@ -295,11 +295,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['carts', 'cartsLength']),
+    ...mapGetters('cartModules', ['carts', 'cartsLength']),
   },
   methods: {
     removeCartItem(id) {
-      this.$store.dispatch('removeCartItem', id);
+      this.$store.dispatch('cartModules/removeCartItem', id);
     },
     addCouponCode() {
       const vm = this;
@@ -310,10 +310,10 @@ export default {
       vm.$http.post(url, { data: coupon }).then((response) => {
         // console.log(response.data);
         if (response.data.success) {
-          vm.$store.dispatch('getCart');
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+          vm.$store.dispatch('cartModules/getCart');
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
@@ -323,7 +323,7 @@ export default {
       const order = vm.form;
       vm.$validator.validate().then((result) => {
         if (!result) {
-          vm.$store.dispatch('updateMessage', { message: '欄位不完整', status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: '欄位不完整', status: 'danger' });
         } else {
           vm.$http.post(url, { data: order }).then((response) => {
             vm.orderId = response.data.orderId;
@@ -339,7 +339,6 @@ export default {
       vm.$http.get(url).then((response) => {
         // console.log(response.data);
         vm.order = response.data.order;
-        vm.$bus.$emit('', 'order');
       });
     },
     payOrder() {
@@ -347,17 +346,17 @@ export default {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${vm.orderId}`;
       vm.$http.post(url).then((response) => {
         if (response.data.success) {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'success' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'success' });
           vm.getOrder();
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },
-    ...mapActions(['getCart']),
+    ...mapActions('cartModules', ['getCart']),
   },
   created() {
-    this.$store.dispatch('getCart');
+    this.$store.dispatch('cartModules/getCart');
   },
 };
 </script>

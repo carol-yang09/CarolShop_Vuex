@@ -36,7 +36,7 @@ export default {
         if (response.data.success) {
           vm.$router.push('/admin/productsmanage');
         } else {
-          vm.$store.dispatch('updateMessage', { message: response.data.message, status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' });
         }
       });
     },

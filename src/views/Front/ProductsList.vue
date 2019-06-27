@@ -112,7 +112,7 @@ export default {
       }
       return vm.products;
     },
-    ...mapGetters(['products']),
+    ...mapGetters('productsModules', ['products']),
   },
   methods: {
     getParams() {
@@ -132,10 +132,10 @@ export default {
     },
     getProducts() {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('getProducts', { url: api, isPagination: false });
+      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: false });
     },
     addToCart(productId) {
-      this.$store.dispatch('addToCart', { id: productId, qty: 1 });
+      this.$store.dispatch('cartModules/addToCart', { id: productId, qty: 1 });
     },
     search() {
       const vm = this;

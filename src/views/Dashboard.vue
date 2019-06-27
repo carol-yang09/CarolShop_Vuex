@@ -22,7 +22,8 @@ import Alert from '@/components/AlertMessage';
 
 export default {
   computed: {
-    ...mapGetters(['isLoading', 'messages']),
+    ...mapGetters(['isLoading']),
+    ...mapGetters('alertMessageModules', ['messages']),
   },
   components: {
     Navbar,

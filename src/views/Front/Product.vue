@@ -101,13 +101,17 @@ export default {
         if (response.data.success) {
           vm.product = response.data.product;
         } else {
-          vm.$store.dispatch('updateMessage', { message: '找不到此商品', status: 'danger' });
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: '找不到此商品', status: 'danger' });
         }
         vm.$store.dispatch('updateLoading', false);
       });
     },
     addToCart(qty) {
-      this.$store.dispatch('addToCart', { id: this.productId, qty });
+      if (qty === 0) {
+        this.$store.dispatch('alertMessageModules/updateMessage', { message: '請選擇數量', status: 'danger' });
+      } else {
+        this.$store.dispatch('cartModules/addToCart', { id: this.productId, qty });
+      }
     },
   },
   created() {

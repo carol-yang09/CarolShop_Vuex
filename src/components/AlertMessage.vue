@@ -18,13 +18,13 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['messages']),
+    ...mapGetters('alertMessageModules', ['messages']),
   },
   methods: {
     updateMessage(message, status) {
-      this.$store.dispatch('updateMessage', { message, status });
+      this.$store.dispatch('alertMessageModules/updateMessage', { message, status });
     },
-    ...mapActions(['removeMessage', 'removeMessageWithTiming']),
+    ...mapActions('alertMessageModules', ['removeMessage', 'removeMessageWithTiming']),
   },
 };
 </script>
