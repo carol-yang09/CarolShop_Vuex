@@ -1,17 +1,17 @@
 <template>
   <div class="mb-4">
     <swiper :options="swiperOption">
-        <swiper-slide v-for="item in products.slice(0, 18)" :key="item.id">
-          <ul class="sider" :style='{backgroundImage: `url(${item.imageUrl})`}'
-           @click.prevent="productBtn(item.id)">
-            <li class="sider-tag">
-              <div class="sider-triangle"></div>
-              <span class="sider-title"> {{item.category}} </span>
-            </li>
-            <li class="sider-rect">{{ item.title }}</li>
-          </ul>
-        </swiper-slide>
-      </swiper>
+      <swiper-slide v-for="item in newProducts" :key="item.id">
+        <ul class="sider" :style='{backgroundImage: `url(${item.imageUrl})`}'
+          @click.prevent="productBtn(item.id)">
+          <li class="sider-tag">
+            <div class="sider-triangle"></div>
+            <span class="sider-title"> {{item.category}} </span>
+          </li>
+          <li class="sider-rect">{{ item.title }}</li>
+        </ul>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
@@ -44,6 +44,9 @@ export default {
     };
   },
   computed: {
+    newProducts() {
+      return this.products.filter(item => item.is_enabled === 1).slice(0, 12);
+    },
     ...mapGetters('productsModules', ['products']),
   },
   methods: {
