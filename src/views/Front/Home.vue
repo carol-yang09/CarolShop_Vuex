@@ -62,8 +62,13 @@
     <div class="mb-4 joinus">
       <div class="joinus-content">
         <h3 class="mb-4">Join our mailing list for updates</h3>
-        <input type="email" class="form-control mb-3" placeholder="Enter your email*">
-        <button type="button" class="form-control btn btn-primary">Subscribe Now</button>
+        <input type="email" name="email" class="form-control" placeholder="Enter your email*"
+         :class="{'is-invalid': errors.first('email')}" v-validate="'required|email'">
+        <span class="text-danger" v-if="errors.first('email')">
+          {{ errors.first('email') }}
+        </span>
+        <button type="button" class="form-control btn btn-primary mt-3"
+         @click="joinusBtn">Subscribe Now</button>
       </div>
     </div>
 
@@ -91,6 +96,16 @@ export default {
     categoryBtn(categoryTitle) {
       const vm = this;
       vm.$router.push({ path: '/productslist', query: { category: categoryTitle } });
+    },
+    joinusBtn() {
+      const vm = this;
+      vm.$validator.validate().then((result) => {
+        if (!result) {
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: '請輸入正確EMAIL格式', status: 'danger' });
+        } else {
+          vm.$store.dispatch('alertMessageModules/updateMessage', { message: '訂閱成功', status: 'success' });
+        }
+      });
     },
   },
   components: {
