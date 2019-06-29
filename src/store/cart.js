@@ -21,6 +21,7 @@ export default ({
         product_id: id,
         qty,
       };
+      context.commit('LOADING', true, { root: true });
       axios.post(url, { data: cart }).then((response) => {
         context.dispatch('getCart');
         if (response.data.success) {
@@ -29,6 +30,7 @@ export default ({
         } else {
           context.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'danger' }, { root: true });
         }
+        context.commit('LOADING', false, { root: true });
       });
     },
     removeCartItem(context, id) {

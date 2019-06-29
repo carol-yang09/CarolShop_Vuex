@@ -41,6 +41,10 @@ https://carol-yang09.github.io/CarolShop_Vuex/dist
 
 [![image.png](https://i.postimg.cc/fLjnjsJk/image.png)](https://postimg.cc/47dSsrvT)
 
+* 搜尋功能
+
+[![image.png](https://i.postimg.cc/05dY34qq/image.png)](https://postimg.cc/yWx33vdf)
+
 * 單一商品詳細資訊
 
 [![image.png](https://i.postimg.cc/44tJLChf/image.png)](https://postimg.cc/MX62HFDN)

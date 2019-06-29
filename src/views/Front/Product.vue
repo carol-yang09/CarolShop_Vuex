@@ -37,14 +37,24 @@
           <hr>
           <ul class="product-summary">
             <li>
-              <a href="#"><i class="fas fa-ruler-horizontal"></i> 尺寸</a>
+              <button type="button" class="btn btn-link p-0"
+               data-toggle="modal" data-target="#sizeModalCenter">
+                <i class="fas fa-ruler-horizontal"></i> 尺寸
+              </button>
             </li>
             <li>
-              <a href="#"><i class="fas fa-tshirt"></i> 試穿報告</a></li>
+              <button type="button" class="btn btn-link p-0"
+               data-toggle="modal" data-target="#tryonModalCenter">
+                <i class="fas fa-tshirt"></i> 試穿報告
+              </button>
+            </li>
             <li>
-              <a href="#"><i class="fas fa-heart"></i> 收藏商品</a>
+              <a href="#" class="btn btn-link p-0">
+                <i class="fas fa-heart"></i> 收藏商品
+              </a>
             </li>
           </ul>
+          <hr>
 
           <div class="input-group addcart">
             <select class="form-control" v-model="qty">
@@ -80,6 +90,139 @@
         </p>
       </div>
     </div>
+
+    <!-- sizeModal -->
+    <div class="modal fade" id="sizeModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="sizeModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-0 border-0">
+            <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pt-0 text-center">
+            <h5 class="mb-4">產品尺寸</h5>
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="table-responsive">
+                  <div class="table d-table">
+                    <thead>
+                      <tr>
+                        <th>尺碼</th>
+                        <th>胸寬</th>
+                        <th>腰寬</th>
+                        <th>全長</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>S</th>
+                        <td>40.5</td>
+                        <td>43</td>
+                        <td>54</td>
+                      </tr>
+                      <tr>
+                        <th>M</th>
+                        <td>42.5</td>
+                        <td>45.5</td>
+                        <td>55.5</td>
+                      </tr>
+                      <tr>
+                        <th>L</th>
+                        <td>45</td>
+                        <td>48</td>
+                        <td>57</td>
+                      </tr>
+                    </tbody>
+                  </div>
+                </div>
+                <p>*單位：cm</p>
+              </div>
+              <div class="col-lg-6 col-12">
+                <img src="../../assets/image/size.jpg" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- tryonModal -->
+    <div class="modal fade" id="tryonModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="tryonModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-0 border-0">
+            <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pt-0 text-center">
+            <h5 class="mb-4">試穿報告</h5>
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="table-responsive">
+                  <div class="table d-table">
+                    <thead>
+                      <tr>
+                        <th>試穿人員</th>
+                        <th>身高(cm)</th>
+                        <th>體重(kg)</th>
+                        <th>適合尺碼</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Model</th>
+                        <td>165</td>
+                        <td>45</td>
+                        <td>S</td>
+                      </tr>
+                      <tr>
+                        <th>A</th>
+                        <td>151</td>
+                        <td>45</td>
+                        <td>S</td>
+                      </tr>
+                      <tr>
+                        <th>B</th>
+                        <td>155</td>
+                        <td>50</td>
+                        <td>M</td>
+                      </tr>
+                      <tr>
+                        <th>C</th>
+                        <td>160</td>
+                        <td>70</td>
+                        <td>XL</td>
+                      </tr>
+                      <tr>
+                        <th>D</th>
+                        <td>165</td>
+                        <td>50</td>
+                        <td>M</td>
+                      </tr>
+                      <tr>
+                        <th>E</th>
+                        <td>170</td>
+                        <td>55</td>
+                        <td>L</td>
+                      </tr>
+                    </tbody>
+                  </div>
+                </div>
+                <p>*個人比例條件不同，僅供參考</p>
+              </div>
+              <div class="col-lg-6 col-12">
+                <img src="../../assets/image/tryon.jpg" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
