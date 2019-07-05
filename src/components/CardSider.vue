@@ -51,8 +51,7 @@ export default {
   },
   methods: {
     getProducts() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: false });
+      this.$store.dispatch('productsModules/getProducts', { isPagination: false });
     },
     productBtn(productId) {
       const vm = this;

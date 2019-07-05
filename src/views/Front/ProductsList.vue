@@ -51,6 +51,16 @@
             <div :style="{background: `url(${product.imageUrl}) center center no-repeat`,
             backgroundSize: 'cover', height:'200px'}">
             </div>
+            <div class="favorite">
+              <a class="text-danger" v-if="product.is_favorite"
+               @click.prevent="removeFavorite(product, false)">
+                <i class="fas fa-heart fa-lg"></i>
+              </a>
+              <a class="text-danger" v-else
+               @click.prevent="addFavorite(product)">
+                <i class="far fa-heart fa-lg"></i>
+              </a>
+            </div>
             <div class="card-body py-2">
               <h5 class="card-title mb-0">{{ product.title }}</h5>
               <div class="d-flex align-items-baseline">
@@ -115,6 +125,12 @@ export default {
     ...mapGetters('productsModules', ['products']),
   },
   methods: {
+    addFavorite(product) {
+      this.$store.dispatch('favoriteModules/addToFavorite', product);
+    },
+    removeFavorite(productItem, delall) {
+      this.$store.dispatch('favoriteModules/removeFavorite', { favoriteItem: productItem, delall });
+    },
     getParams() {
       if (this.$route.query.category) {
         this.select = this.$route.query.category;
@@ -131,8 +147,7 @@ export default {
       }
     },
     getProducts() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: false });
+      this.$store.dispatch('productsModules/getProducts', { isPagination: false });
     },
     addToCart(productId) {
       this.$store.dispatch('cartModules/addToCart', { id: productId, qty: 1 });
@@ -153,9 +168,22 @@ export default {
 <style lang="scss" scoped>
 @import 'src/assets/_custom.scss';
 
+// category
 .category {
   cursor: pointer;
 }
+
+// favorite
+.favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  a {
+    cursor: pointer;
+    font-size: 1rem;
+  }
+}
+
 .product-more {
   display: flex;
   padding-top: 0.2rem;

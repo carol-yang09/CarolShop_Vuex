@@ -49,8 +49,13 @@
               </button>
             </li>
             <li>
-              <a href="#" class="btn btn-link p-0">
+              <a href="#" class="btn btn-link p-0" :class="{'d-none': isFavorite}"
+               @click.prevent="addFavorite(product)">
                 <i class="fas fa-heart"></i> 收藏商品
+              </a>
+              <a href="#" class="btn btn-link p-0" :class="{'d-none': !isFavorite}"
+               @click.prevent="removeFavorite(product, false)">
+                <i class="fas fa-heart-broken"></i> 取消收藏
               </a>
             </li>
           </ul>
@@ -227,13 +232,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
       productId: '',
       product: [],
       qty: 0,
+      isFavorite: false,
     };
+  },
+  computed: {
+    ...mapGetters('favoriteModules', ['favorites']),
   },
   methods: {
     getProduct() {
@@ -243,6 +254,12 @@ export default {
       vm.$http.get(url).then((response) => {
         if (response.data.success) {
           vm.product = response.data.product;
+          // 若已在 vm.favorites 中則 vm.isFavorite = true
+          vm.favorites.forEach((item) => {
+            if (vm.product.id === item.id) {
+              vm.isFavorite = true;
+            }
+          });
         } else {
           vm.$store.dispatch('alertMessageModules/updateMessage', { message: '找不到此商品', status: 'danger' });
         }
@@ -255,6 +272,21 @@ export default {
       } else {
         this.$store.dispatch('cartModules/addToCart', { id: this.productId, qty });
       }
+    },
+    addFavorite(product) {
+      this.$store.dispatch('favoriteModules/addToFavorite', product);
+      this.isFavorite = true;
+    },
+    removeFavorite(productItem, delall) {
+      this.$store.dispatch('favoriteModules/removeFavorite', { favoriteItem: productItem, delall });
+      this.isFavorite = false;
+    },
+  },
+  watch: {
+    // 監聽 Layout.vue 我的最愛選單 當路由改變，頁面重新渲染
+    $route() {
+      this.productId = this.$route.params.productId;
+      this.getProduct();
     },
   },
   created() {

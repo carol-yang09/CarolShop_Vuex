@@ -48,7 +48,7 @@
           <div class="news-border">
             <h3 class="mb-3">New Arrival</h3>
             <p>Summer Clothing</p>
-            <router-link to="/productslist" class="btn btn-primary"> Go Shop </router-link>
+            <router-link to="/productslist" class="btn btn-primary"> Shop Now </router-link>
           </div>
         </div>
         <div class="mb-4 news-img news-img-2">

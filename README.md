@@ -1,6 +1,6 @@
 # carolshop 購物網站
 
-[![image.png](https://i.postimg.cc/9MTxhfcQ/image.png)](https://postimg.cc/XGjKK4ZR)
+[![image.png](https://i.postimg.cc/WzCSs6ND/image.png)](https://postimg.cc/XBK985y3)
 
 ## Demo
 
@@ -14,6 +14,7 @@ https://carol-yang09.github.io/CarolShop_Vuex/dist
 * 首頁 Banner 、 商品 輪播
 * 管理員登入
 * 購物車功能
+* 我的最愛功能 (使用 localStorage)
 * 商品列表、分類展示
 * 單一商品詳細介紹
 * 訂單結帳
@@ -35,7 +36,11 @@ https://carol-yang09.github.io/CarolShop_Vuex/dist
 
 * 購物車
 
-[![image.png](https://i.postimg.cc/bvvMKnC0/image.png)](https://postimg.cc/FY2DSYQ1)
+[![image.png](https://i.postimg.cc/Fz7Dtn45/image.png)](https://postimg.cc/kRPxKsGf)
+
+* 我的最愛
+
+[![image.png](https://i.postimg.cc/LXyNbFG3/image.png)](https://postimg.cc/MMQ7nN6n)
 
 * 商品列表
 
@@ -70,11 +75,13 @@ https://carol-yang09.github.io/CarolShop_Vuex/dist
 * Webpack 打包
 * ESlint
 * Bootstrap4 + scss手刻
+* localStorage
 
 ## 使用套件
 
 * [vue-axios](https://github.com/imcvampire/vue-axios)
 * [VeeValidate (驗證表單)](https://github.com/baianat/vee-validate)
+* [vue-loading-overlay](https://github.com/ankurk91/vue-loading-overlay)
 * [vue-awesome-swiper (輪播)](https://github.com/surmon-china/vue-awesome-swiper)
 * [Bootstrap 4](https://bootstrap.hexschool.com/)
 * [Google Font](https://fonts.google.com/)

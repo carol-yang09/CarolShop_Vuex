@@ -178,8 +178,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products?page=${page}`;
-      this.$store.dispatch('productsModules/getProducts', { url: api, isPagination: true });
+      this.$store.dispatch('productsModules/getProducts', { isPagination: true, page });
     },
     openModal(isNew, item) {
       if (isNew) {
