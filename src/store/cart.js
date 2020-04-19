@@ -35,9 +35,11 @@ export default ({
     },
     removeCartItem(context, id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
+      context.commit('LOADING', true, { root: true });
       axios.delete(url).then((response) => {
         context.dispatch('getCart');
         context.dispatch('alertMessageModules/updateMessage', { message: response.data.message, status: 'warning' }, { root: true });
+        context.commit('LOADING', false, { root: true });
       });
     },
     showCart(context) {

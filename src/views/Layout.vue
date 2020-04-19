@@ -249,14 +249,6 @@ export default {
   z-index: 9999;
 }
 
-// .toolbar {
-  // display: flex;
-//   @media (max-width: 992px) {
-//     flex-direction: column;
-//     justify-content: center;
-//   }
-// }
-
 .cart, .favorite {
   float: right;
   margin-left: 0.25rem;

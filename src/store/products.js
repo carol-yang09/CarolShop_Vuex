@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-export default({
+export default ({
   namespaced: true,
   state: {
     products: [],
