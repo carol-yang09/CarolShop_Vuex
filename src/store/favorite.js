@@ -19,6 +19,7 @@ export default ({
       context.commit('PUSH_FAVORITE', favoriteData);
       localStorage.setItem('favoriteData', JSON.stringify(context.state.favorites));
       context.dispatch('getFavorite');
+      context.dispatch('alertMessageModules/updateMessage', { message: '已加入我的最愛', status: 'success' }, { root: true });
     },
     removeFavorite(context, { favoriteItem, delall }) {
       if (delall) {
@@ -28,6 +29,7 @@ export default ({
         localStorage.setItem('favoriteData', JSON.stringify(context.state.favorites));
       }
       context.dispatch('getFavorite');
+      context.dispatch('alertMessageModules/updateMessage', { message: '已刪除我的最愛', status: 'warning' }, { root: true });
     },
   },
   mutations: {
