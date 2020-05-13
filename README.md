@@ -4,7 +4,13 @@
 
 ## Demo
 
+Vue CLI 2
+
 https://carol-yang09.github.io/CarolShop_Vuex/dist
+
+Vue CLI 3
+
+https://github.com/carol-yang09/CarolShop_VueCLI3
 
 ## 簡介
 
