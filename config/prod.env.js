@@ -1,6 +1,8 @@
 'use strict'
+require('dotenv').config()
+
 module.exports = {
   NODE_ENV: '"production"',
-  APIPATH: '"https://vue-course-api.hexschool.io"',
-  CUSTOMPATH: '"carol"',
+  APIPATH: process.env.APIPATH,
+  CUSTOMPATH: process.env.CUSTOMPATH,
 }
